@@ -1,0 +1,44 @@
+name: Docker_Demo
+services:
+  webserver:
+    container_name: nginx
+    build:
+      context: ./webserver #location of Dockerfile
+    ports:
+    - 8080:80 #host:container
+    networks:
+    - demo_net
+    
+  postgres:
+    container_name: postgres
+    build:
+      context: ./database #location of Dockerfile
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: sampledb
+    volumes:
+    - demo_db:/var/lib/postgresql #name_of_volume:/location/in/container
+    networks:
+    - demo_net
+
+  backend:
+    container_name: backend
+    build:
+      context: ./backend
+    networks:
+    - demo_net
+
+  alpine:
+    container_name: alpine
+    image: alpine
+    command: tail -f /dev/null
+    networks:
+    - demo_net
+
+networks:
+  demo_net:
+    driver: bridge
+
+volumes:
+  demo_db:

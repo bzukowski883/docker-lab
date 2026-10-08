@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Docker Lab Frontend</title>
+</head>
+<body>
+  <h1>Users</h1>
+  <button id="load">Load Users</button>
+  <pre id="output"></pre>
+
+  <script>
+    document.getElementById("load").onclick = async () => {
+      const res = await fetch("/api/users");
+      const data = await res.json();
+      document.getElementById("output").textContent =
+        JSON.stringify(data, null, 2);
+    };
+  </script>
+</body>
+</html>
