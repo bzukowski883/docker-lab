@@ -35,9 +35,14 @@ These are all the commands you will need to properly explore this lab the way it
 ## Docker
 
 ### docker ps | grep `text`
+
 docker ps is a command that retrieves all actively running containers, it is extremely useful when working with Docker and it's one of those ones to remember.
 
 The | grep text portion is optional, but it allows you to filter based on whether the line contains the phrase you're looking for. 99% of the time when you do this you are looking for the image, as the container's names are garbage most of the time.
+
+### docker build -t `name` `location`
+
+This command takes your static docker file and converts it into an image for running later. the name is what your image will be refered to in a command like run, and the location is where the dockerfile is from your CWD. Most of the time it is just .
 
 ### docker run --name `name` `image`
 
@@ -119,12 +124,13 @@ This is important as it shows that because only the front end is exposed to the 
 
 Furthermore, we have shown that we can get 3 containers to all interact with each other, and even form a chain of information passing.
 
-7. we are going to run the command to launch pygame now.
-8. you can play through once, but once you are done leave the game open on the choice menu
-9. now open a NEW terminal and go back to inside the alpine terminal and ping the pygame container.
-10. now use the command to add the pygame to the existing Docker network (found in the compose file)
-11. go back to your alpine container and attempt to ping it again.
-12. finish the game
+7. first you need to run the command to build pygame.
+8. now run the command to launch pygame now.
+9. you can play through once, but once you are done leave the game open on the choice menu
+10. now open a NEW terminal and go back to inside the alpine terminal and ping the pygame container.
+11. now use the command to add the pygame to the existing Docker network (found in the compose file)
+12. go back to your alpine container and attempt to ping it again.
+13. finish the game
 
 Here we have shown that containers can host interactive terminals. This is important as it shows that almost anything you want a program to do a container can do. Now having a gui is difficult, as it is a container and can't mess with your host's "domain". However, we can use forwarding technologies to just forward the gui output to your screen. With terminals you can see that any text based thing you want can be launched in a container.
 
